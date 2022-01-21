@@ -1,11 +1,10 @@
 # macOS-rice
 Lightweight sandbox of all my custom configurations to Mac OS
 
-## Built with
+## Configurations
 * [Kitty](https://sw.kovidgoyal.net/kitty/)
-* [Ubersicht](https://tracesof.net/uebersicht/)
 * Shell (zsh)
-* React
+* nvim
 
 ## Acknowledgements
 * [ASCII Art](https://github.com/robinpx/macOS-rice.git)

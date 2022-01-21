@@ -1,15 +1,22 @@
-# Create name highlight
-PROMPT="%(!.%F{cyan}.%F{cyan})%n%F{red}@%m %F{white}%d %F{white}~% %F{reset} "
-hour=$(expr $(date +%I) - "0")
+#### CUSTOM SHELL SCRIPTS ####
+source ~/.vim_tips.sh  # type vimtips
+
+
+#### CUSTOM TERMINAL ####
+
+# Create name highlight 
+PROMPT="%{%F{blue}%n%F{white}@%F{cyan}%m %F{white}%(5~|%-1~/.../%3~|%4~)%}
+%{%F{white}► %F{reset}%} "
+HOUR=$(expr $(date +%H) - "0")
 
 # Generative ASCII Banner
-apple_file=~/kitty_banners/apple.txt
-night_file=~/kitty_banners/night.txt
-morning_file=~/kitty_banners/morning.txt
-saturn_file=~/kitty_banners/saturn.txt
-cpu_file=~/kitty_banners/cpu.txt
-star_file=~/kitty_banners/star.txt
-affirmations_file=~/kitty_text/affirmations.txt
+apple_file=~/kitty_custom/kitty_banners/apple.txt
+night_file=~/kitty_custom/kitty_banners/night.txt
+morning_file=~/kitty_custom/kitty_banners/morning.txt
+saturn_file=~/kitty_custom/kitty_banners/saturn.txt
+cpu_file=~/kitty_custom/kitty_banners/cpu.txt
+star_file=~/kitty_custom/kitty_banners/star.txt
+affirmations_file=~/kitty_custom/kitty_text/affirmations.txt
 
 # Populate affirmations array
 affirmations=()
@@ -17,21 +24,20 @@ while IFS= read -r line; do
    affirmations+=("$line")
 done < "$affirmations_file"
 
-greeting() {
-   #hour=$(expr $(date +%I) - "0")
-   if [[ $hour -lt 7 && $hour -gt 1 ]]
+greeting() { 
+   if [[ $HOUR -lt 7 && $HOUR -gt 1 ]]
    then 
       echo "Take a pause now"
-   elif [[ $hour -lt 12 && $hour -gt 18 ]]
+   elif [[ $HOUR -lt 12 && $HOUR -gt 6 ]]
    then
       echo "Good morning"
-   elif [[ $hour -lt 17 && $hour -gt 12 ]]
+   elif [[ $HOUR -lt 17 && $HOUR -gt 11 ]]
    then 
       echo "Good afternoon"
-   elif [[ $hour -lt 21 && $hour -gt 16 ]]
+   elif [[ $HOUR -lt 21 && $HOUR -gt 16 ]]
    then
       echo "Good evening"
-   elif [[ $hour -lt 23 && $hour -gt 20 ]]
+   elif [[ $HOUR -lt 23 && $HOUR -gt 20 ]]
    then
       echo "Good night"
    else
@@ -65,12 +71,13 @@ draw_txt() {
 files=("$apple_file" "$saturn_file" "$cpu_file" "$star_file")
 randind2=$(jot -r 1 1 ${#files[@]})
 
-if [[ $hour -lt 21 && $hour -gt 12 ]]
+if [[ $HOUR -lt 21 && $HOUR -gt 11 ]]
 then
    draw_txt "${files[$randind2]}" 
-elif [[ $hour -lt 12 && $hour -gt 6 ]]
+elif [[ $HOUR -lt 12 && $HOUR -gt 6 ]]
 then
    draw_txt "$morning_file"
 else
    draw_txt "$night_file"
 fi
+

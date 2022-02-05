@@ -7,6 +7,9 @@ Lightweight sandbox of all my custom for-fun  configurations to Mac OS made spor
 * [NeoVim](https://neovim.io/)
 * [Ubersicht](https://github.com/felixhageloh/uebersicht)
 
+## Preview
+![Desktop](./desktop.jpg)
+
 ## Acknowledgements
 * [ASCII Art](https://github.com/robinpx/macOS-rice.git)
 * [/r/unixporn subreddit](https://www.reddit.com/r/unixporn/)

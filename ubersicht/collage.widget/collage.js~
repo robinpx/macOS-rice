@@ -1,0 +1,75 @@
+refreshFrequency: 10000,
+style: `
+	bottom:calc(4em * 2 + 16.5em * 2)
+	right:calc(16em + 5em)
+
+	#slides 
+	   position:absolute
+
+	.slide 
+	   background:transparent
+	   background-position:center
+	   background-size:cover
+	   border-radius:5px
+	
+	#slide
+	   width:13em
+	   height:13em
+	   opacity:0.88
+
+	#slide2
+	   margin-top:3em
+	   width:20em
+	   height:20em
+
+	#slide3
+	   position:absolute;
+	   width:5em
+	   height:5em
+	   left:-65vw
+	   top:-18vh
+	   bottom:0
+	   right:0
+
+`,
+count: 0,
+ind: 0,
+ind2: 0,
+photos2: ["https://64.media.tumblr.com/5fafb7288ef1f0b17872a26f476a9916/b577177097393862-be/s400x600/616c1fa0963a3ba6e2032abc2c71e53160fd0225.png",
+"https://64.media.tumblr.com/9580e44db1461b14a03e02ccc86cee96/b577177097393862-4c/s400x600/a5b1cecc7d2e522adcb2778c64a3f17d902d1c7f.png",
+"https://64.media.tumblr.com/30b742c7b49b5356b500bb1be014aa6d/00e8d90469f5c61a-77/s400x600/1abc27476d1e48b01b189efed25219f17543db10.jpg"],
+photos: ["https://64.media.tumblr.com/83df0bcf8ea5c00aa298ded16d76b25c/47220a9bdf9b7512-26/s640x960/fa106f9e651e40a0ac9ad598191d3401f21f4bf4.jpg",
+"https://64.media.tumblr.com/4d6798bae57b2e71ee768325e04c31b8/47220a9bdf9b7512-50/s500x750/a85f40c7c235a9dcf9fb47ac1fd2f527da95c864.jpg",
+"https://cdn.mos.cms.futurecdn.net/7CP6SovrzRDrgvFSP55xYJ.jpg",
+"https://64.media.tumblr.com/d772a05e33dce071021b7564122b7943/894d971153e783a1-a5/s1280x1920/f926cc80a05d9557b1c5324bd37417b39328d875.jpg",
+"https://64.media.tumblr.com/b69402ee0215ac1e72293ab5d98a1894/c24f90b2422fdf16-12/s1280x1920/cf30223f52cefd3ca59e82d08b45d9f22f0a6a5c.png"],
+lastDisplayed:null,
+update: function(output,domEl) {
+	var now = new Date();
+	if (this.count % 2 === 0) {
+	   this.ind += 1;
+	}
+	else {
+	   this.ind2 += 1;
+	}
+	if (this.ind >= this.photos.length) {
+	   this.ind = 0;
+	}
+	if (this.ind2 >= this.photos2.length) {
+	   this.ind2 = 0;
+	}
+	$("#slide").css("background-image","url('" + this.photos[this.ind] + "')");
+	$("#slide3").css("background-image","url('" + this.photos2[this.ind2] + "')");
+	this.count += 1;
+	this.lastDisplayed = now;
+},
+render: function() {
+	return `<div id="slides"> 
+	<div class="slide" id="slide" style="background-image:url('https://cdn.mos.cms.futurecdn.net/7CP6SovrzRDrgvFSP55xYJ.jpg')">
+	</div>
+	<div class="slide" id="slide2" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5c27d907f2e6b1e65fc188a0/1590869326645-6GCKTMEK6Y0HK1TZ475C/tumblr_inline_pbvlnluZYE1rxhdm6_500.gif')">
+	</div>
+	<div class='slide' id="slide3" style="background-image:url('https://64.media.tumblr.com/5fafb7288ef1f0b17872a26f476a9916/b577177097393862-be/s400x600/616c1fa0963a3ba6e2032abc2c71e53160fd0225.png')">
+	</div>
+	</div>`
+}
